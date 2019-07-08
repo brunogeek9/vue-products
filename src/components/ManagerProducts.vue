@@ -85,11 +85,12 @@ export default {
       .then(function (response) {
         console.log(response);
         alert("cadastrou");
-        this.newProduct = {};
+        
       })
       .catch(function (error) {
         console.log(error);
       });
+      this.newProduct = {};
     }
   }
 }
