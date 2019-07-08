@@ -40,7 +40,7 @@ export default {
     margin: auto;
     float: left;
     padding-right: 5%;
-    padding-top: 5%;
+    padding-top: 2%;
     width: 80%;
 
   }
