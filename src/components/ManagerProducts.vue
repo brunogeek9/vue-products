@@ -83,14 +83,15 @@ export default {
         price: this.newProduct.price
       })
       .then(function (response) {
-        console.log(response);
-        alert("cadastrou");
+        // console.log(response);
+        alert(response);
         
       })
       .catch(function (error) {
-        console.log(error);
+        // console.log(error);
+        alert(error);
       });
-      this.newProduct = {};
+      // this.newProduct = {};
     }
   }
 }
