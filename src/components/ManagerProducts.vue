@@ -38,6 +38,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'manager-products',
   props: {
@@ -46,12 +48,23 @@ export default {
   data(){
     return{
       products: [
-        {id:1, name:"relogio analogico", quantity: 3, price: 35},
-        {id:2, name:"relogio digital", quantity: 3, price: 20},
-        {id:3, name:"dvd", quantity: 3, price: 3}
+        // {id:1, name:"relogio analogico", quantity: 3, price: 35},
+        // {id:2, name:"relogio digital", quantity: 3, price: 20},
+        // {id:3, name:"dvd", quantity: 3, price: 3}
       ]
     }
+  },
+  mounted(){
+    axios.get(`https://my-json-server.typicode.com/brunogeek9/fake-products-api/products`)
+    .then(response => {
+      
+      this.products = response.data
+    })
+    .catch(e => {
+      this.errors.push(e)
+    })
   }
+  
 }
 </script>
 
