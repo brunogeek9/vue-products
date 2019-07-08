@@ -8,12 +8,13 @@
       </button>
     </div> -->
     <!-- adicionando o form de cadastro -->
-    <form id="form">
-      <input type="text" class="form-control" placeholder="name"> 
-      <input type="text" class="form-control" placeholder="Quantity"> 
-      <input type="text" class="form-control" placeholder="Price"> 
-      <button class="btn btn-primary" id="btn">Cadastrar</button>
+    <form id="form" @submit.prevent="addProduct">
+      <input type="text" class="form-control" placeholder="name" v-model="newProduct.name"> 
+      <input type="text" class="form-control" placeholder="Quantity" v-model="newProduct.quantity"> 
+      <input type="text" class="form-control" placeholder="Price" v-model="newProduct.price"> 
+      <button type="submit" class="btn btn-primary" id="btn">Cadastrar</button>
     </form>
+    {{newProduct}}
     <!-- finalizando form  -->
     <table class="table">
     <thead>
@@ -51,20 +52,46 @@ export default {
         // {id:1, name:"relogio analogico", quantity: 3, price: 35},
         // {id:2, name:"relogio digital", quantity: 3, price: 20},
         // {id:3, name:"dvd", quantity: 3, price: 3}
-      ]
+      ],
+      newProduct:{ 
+        type: Object 
+      }
+
     }
   },
+  // created(){
+  //   axios.create({
+  //     baseURL: 
+  //   })
+  // },
   mounted(){
+    
     axios.get(`https://my-json-server.typicode.com/brunogeek9/fake-products-api/products`)
-    .then(response => {
+      .then(response => {
+        this.products = response.data
+      })
+      .catch(e => {
+        this.errors.push(e)
+      })
+  },
+  methods:{
+    addProduct(){
       
-      this.products = response.data
-    })
-    .catch(e => {
-      this.errors.push(e)
-    })
+      axios.post(`https://my-json-server.typicode.com/brunogeek9/fake-products-api/products`, {
+        name: this.newProduct.name,
+        quantity: this.newProduct.quantity,
+        price: this.newProduct.price
+      })
+      .then(function (response) {
+        console.log(response);
+        alert("cadastrou");
+        this.newProduct = {};
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
   }
-  
 }
 </script>
 
