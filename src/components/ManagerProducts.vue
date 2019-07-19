@@ -1,13 +1,7 @@
 <template>
   <div class="container">
     <h2>{{ title }}</h2>
-    <!-- <div class="alert alert-success alert-dismissible fade show" role="alert">
-      With Bootstrap!
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div> -->
-    <!-- adicionando o form de cadastro -->
+    
     <form id="form" @submit.prevent="addProduct">
       <input type="text" class="form-control" placeholder="name" v-model="newProduct.name"> 
       <input type="text" class="form-control" placeholder="Quantity" v-model="newProduct.quantity"> 
@@ -39,8 +33,8 @@
 </template>
 
 <script>
-import axios from 'axios';
-
+// import axios from 'axios';
+import Service from '@/services/product.service.js'
 export default {
   name: 'manager-products',
   props: {
@@ -59,25 +53,24 @@ export default {
 
     }
   },
-  // created(){
-  //   axios.create({
-  //     baseURL: 
-  //   })
-  // },
   mounted(){
+    this.listar();  
     
-    axios.get(`https://my-json-server.typicode.com/brunogeek9/fake-products-api/products`)
-      .then(response => {
-        this.products = response.data
-      })
-      .catch(e => {
-        this.errors.push(e)
-      })
   },
   methods:{
+    async listar(){
+      
+      this.products = await Service.getAll();
+      // try {
+        // const res = await this.$http.get('/products');
+        // this.products = res.data;
+      // } catch (error) {
+        
+      // }
+    },
     addProduct(){
       
-      axios.post(`https://my-json-server.typicode.com/brunogeek9/fake-products-api/products`, {
+      this.$http.post(`https://my-json-server.typicode.com/brunogeek9/fake-products-api/products`, {
         name: this.newProduct.name,
         quantity: this.newProduct.quantity,
         price: this.newProduct.price

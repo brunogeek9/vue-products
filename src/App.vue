@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <the-navbar></the-navbar>
-    <!-- <hello-world title="Gerenciando Produtos"/> -->
+    
     <manager-products title="Gerenciando Produtos"></manager-products>
     
   </div>
