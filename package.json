@@ -15,7 +15,8 @@
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0",
     "unirest": "^0.6.0",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "vuejs-logger": "^1.5.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.9.0",

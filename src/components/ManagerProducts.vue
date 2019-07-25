@@ -80,9 +80,8 @@
 </template>
 
 <script>
-// import axios from 'axios';
-// import Service from '@/services/product.service.js'
-import rest from 'unirest';
+import Service from '@/services/product.service.js'
+
 export default {
   name: 'manager-products',
   props: {
@@ -103,19 +102,13 @@ export default {
   },
   mounted(){
     this.listar();  
-    
+    this.$log.info('aaa',this.products)
   },
   methods:{
-    listar(){
-      let req = rest("GET", "http://localhost:3001/api/products");
-
-      req.end(function (res) {
-        if (res.error) throw new Error(res.error);
-
-        alert(res.body);
-      });
-
-
+    async listar(){
+      let res = await Service.getAll();
+      this.products = res;
+      
     },
     addProduct(){
       
