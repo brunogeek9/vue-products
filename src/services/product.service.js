@@ -5,7 +5,7 @@ const PLURAL_URL = '/products';
 export default {
   async getAll() {
     const res = await axios.get(PLURAL_URL);
-    let products = res.docs;
+    let products = res.data;
     
     return products;
   }

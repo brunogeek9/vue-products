@@ -60,27 +60,57 @@
           <el-table :data="products"
            style="width: 100%; padding: 20px">
             <el-table-column
-              prop="title"
+              prop="name"
               label="Nome"
-              width="180">  
+              width="160">  
+            </el-table-column>
+            <el-table-column
+              prop="description"
+              label="Descrição"
+              width="160">  
             </el-table-column>
             <el-table-column
               prop="price"
               label="Preço"
-              width="180">  
+              width="160">  
+            </el-table-column>
+            <el-table-column
+              prop="quantity"
+              label="Quantidade"
+              width="160">  
+            </el-table-column>
+            <el-table-column
+              label="Operations"
+              width="160">
+              <template slot-scope="scope">
+                
+                <el-button
+                  @click.native.prevent="deleteRow(scope.$index, products)"
+                  type="danger" circle icon="el-icon-delete">
+                </el-button>
+
+                <el-button type="primary" icon="el-icon-edit" circle></el-button>
+                
+                <el-button type="success" icon="el-icon-coin" circle></el-button>
+              </template>
             </el-table-column>
           </el-table>
+          <el-button type="primary" id="new" @click="addProduct()">Novo</el-button>
+          <div id="form" v-if="show">
+            <p>content</p>  
+          </div>
         </el-main>
       </el-container>
+        
   </el-container>  
-    
+  
   <h2>{{ title }}</h2>
     
   </div>
 </template>
 
 <script>
-import Service from '@/services/product.service.js'
+// import ss from '@/services/product.service.js'
 
 export default {
   name: 'manager-products',
@@ -90,43 +120,30 @@ export default {
   data(){
     return{
       products: [
-        // {id:1, name:"relogio analogico", quantity: 3, price: 35},
-        // {id:2, name:"relogio digital", quantity: 3, price: 20},
-        // {id:3, name:"dvd", quantity: 3, price: 3}
+         {id:1, name:"relogio analogico", description: "um produto foda", quantity: 10, price: 35},
+         {id:2, name:"relogio digital",description: "um produto foda", quantity: 20, price: 20},
+         {id:3, name:"dvd",description: "um produto foda", quantity: 3, price: 30}
       ],
       newProduct:{ 
         type: Object 
-      }
+      },
+      show: false
 
     }
   },
   mounted(){
     this.listar();  
-    this.$log.info('aaa',this.products)
+    
   },
   methods:{
-    async listar(){
-      let res = await Service.getAll();
-      this.products = res;
+    listar(){
       
     },
     addProduct(){
-      
-      this.$http.post(`https://my-json-server.typicode.com/brunogeek9/fake-products-api/products`, {
-        name: this.newProduct.name,
-        quantity: this.newProduct.quantity,
-        price: this.newProduct.price
-      })
-      .then(function (response) {
-        // console.log(response);
-        alert(response);
-        
-      })
-      .catch(function (error) {
-        // console.log(error);
-        alert(error);
-      });
-      // this.newProduct = {};
+      this.show =! this.show;
+    },
+    deleteRow(index, rows) {
+      rows.splice(index, 1);
     }
   }
 }
@@ -165,5 +182,8 @@ export default {
   }
   .button-container {
     margin-top: 20px;
+  }
+  #new{
+    margin-top: 2%;
   }
 </style>

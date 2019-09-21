@@ -4,7 +4,6 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 import App from './App.vue'
-import VueLogger from 'vuejs-logger';
 const options = {
   isEnabled: true,
   stringifyArguments : false,
@@ -13,7 +12,10 @@ const options = {
   separator: '|',
   showConsoleColors: true
 };
+import VueLogger from 'vuejs-logger';
+
 Vue.use(VueLogger, options);
+
 Vue.config.productionTip = false
 axios.defaults.baseURL = 'http://localhost:3001/api';
 
