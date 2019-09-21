@@ -13,6 +13,7 @@ const options = {
   showConsoleColors: true
 };
 import VueLogger from 'vuejs-logger';
+import vuetify from './plugins/vuetify';
 
 Vue.use(VueLogger, options);
 
@@ -21,5 +22,6 @@ axios.defaults.baseURL = 'http://localhost:3001/api';
 
 
 new Vue({
-  render: h => h(App),
+  vuetify,
+  render: h => h(App)
 }).$mount('#app')

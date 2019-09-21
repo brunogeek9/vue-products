@@ -1,25 +1,36 @@
 <template>
-  <div id="app">
-    <!-- <the-navbar></the-navbar> -->
-    
-    <!-- <manager-products title="Gerenciando Produtos"></manager-products> -->
-    
-  </div>
+  <v-app>
+    <v-app-bar app>
+      <v-toolbar-title class="headline text-uppercase">
+        <span>Vuetify</span>
+        <span class="font-weight-light">MATERIAL DESIGN</span>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn
+        text
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank"
+      >
+        <span class="mr-2">Latest Release</span>
+      </v-btn>
+    </v-app-bar>
+
+    <v-content>
+      <HelloWorld/>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-// import ManagerProducts from './components/ManagerProducts.vue'
-// import TheNavbar from './components/TheNavbar.vue'
-// import 'bootstrap'; 
-// import 'bootstrap/dist/css/bootstrap.min.css';
-export default {
-  name: 'app',
-  components: {
-    // TheNavbar,
-    // ManagerProducts
-  }
-}
-</script>
+import HelloWorld from './components/HelloWorld';
 
-<style>
-</style>
+export default {
+  name: 'App',
+  components: {
+    HelloWorld,
+  },
+  data: () => ({
+    //
+  }),
+};
+</script>
