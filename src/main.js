@@ -14,6 +14,7 @@ const options = {
 };
 import VueLogger from 'vuejs-logger';
 import vuetify from './plugins/vuetify';
+import router from './router'
 
 Vue.use(VueLogger, options);
 
@@ -23,5 +24,6 @@ axios.defaults.baseURL = 'http://localhost:3001/api';
 
 new Vue({
   vuetify,
+  router,
   render: h => h(App)
 }).$mount('#app')
