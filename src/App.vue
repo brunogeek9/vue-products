@@ -1,15 +1,9 @@
 <template>
   
   <v-app>
-    <v-navigation-drawer app>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </v-navigation-drawer>
-
-    <v-app-bar app>
-      <!-- -->
-    </v-app-bar>
-
+    <navbar />    
+    <!-- <v-app-bar color="deep-purple accent-4" dense dark>  -->
+     
     <!-- Sizes your content based upon application components -->
     <v-content>
 
@@ -21,8 +15,20 @@
       </v-container>
     </v-content>
 
-    <v-footer app>
-      <!-- -->
+    <v-footer app absolute class="font-weight-medium">
+      <v-col class="text-center" cols="12">
+        {{ new Date().getFullYear() }} — <strong>criado por bruno jamelli</strong>
+      </v-col>
     </v-footer>
   </v-app>
 </template>
+
+<script>
+import navbar from './components/Navbar';
+  
+export default {
+  components:{
+    navbar
+  }
+}
+</script>
